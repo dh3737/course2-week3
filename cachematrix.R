@@ -22,24 +22,24 @@ makeCacheMatrix <- function (x, ...) {
     x <- as.matrix
     
     cacheDir <- getCacheRootPath                # Get the path
-    # of the directory where the 
-    # cache file is stored or
-    # sets a default directory
-    # if no cache directory is 
-    # set.
+                                                # of the directory where the 
+                                                # cache file is stored or
+                                                # sets a default directory
+                                                # if no cache directory is 
+                                                # set.
     
     m <- NULL                                   # Set up to determine if the matrix was 
-    # previously called.    
+                                                # previously called.    
     
     setmatrix <- function(y){                   # Function to cache the matrix for                       
-        #      x <<- y                                # subsequent retrieval
+ #      x <<- y                                 # subsequent retrieval
         m <<- NULL
     }
     
     evalWithMemoization(setmatrix)              # R.cache function to evaluate
-    # a matirx to determine if
-    # it has already been evaulated.
-    
+                                                # a matirx to determine if
+                                                # it has already been evaulated.
+                                                
     getmatrix <- function() {                   # Function to retrieve cached 
         x                                       # matrix.
     }
@@ -47,25 +47,25 @@ makeCacheMatrix <- function (x, ...) {
     setinverse <- function() {                  # Function to solve for the 
         x                                       # inverse of the matrix 
         rootPath <- getCacheRootPath()          #   Retrives the local 
-        #   directories where the 
-        #   cache files are stored.
-        
+                                                #   directories where the 
+                                                #   cache files are stored.
+                                                
         m <- memoizedCall(dirs=rootPath, "cacheSolve") # The R.cache 
-        #   memoizedCall calls the  
-        #   function and captures the 
-        #   results to be retrieved
-        #   if the function is called
-        #   again with the exact
-        #   arguments.    
+                                                #   memoizedCall calls the  
+                                                #   function and captures the 
+                                                #   results to be retrieved
+                                                #   if the function is called
+                                                #   again with the exact
+                                                #   arguments.    
     }                                           # 
     
     getinverse <- function()    {               # Function to retrieve cached     
-        # inverse matrix.
+                                                # inverse matrix.
         m <- memoizedCall(dirs=rootPath, "cacheSolve") # This R.cache function  
     }                                           #   also loads saved data resuts
-    #   from the file cache if  
-    #   the same arguments are being
-    #   reevaluated.
+                                                #   from the file cache if  
+                                                #   the same arguments are being
+                                                #   reevaluated.
     
     list(setmatrix = setmatrix,                 # List to assign labels to 
          getmatrix = getmatrix,                 # the function for easy
@@ -90,8 +90,8 @@ makeCacheMatrix <- function (x, ...) {
 
 cacheSolve <- function(x, ...) {
     m <- solve(x)                              # Exeucte the solve function 
-    # to compute the inverse        
-    saveCache (m, dir=rootPath, "cacheSolve", key==NULL )                                            # inverse in memory.
+                                               # to compute the inverse        
+    saveCache (m, dir=rootPath, "cacheSolve", key==NULL ) # inverse in memory.
     m                                          # Cache the results of the
-    # computation.      
+                                               # computation.      
 }
